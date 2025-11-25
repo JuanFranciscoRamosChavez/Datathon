@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useAutoScroll } from "./hooks/useAutoScroll";
 
 import LandingPage from "./components/LandingPage";
-import GuiadoPage from "./components/GuiadoPage"; // O "./pages/GuiadoPage" según tu carpeta
+import GuiadoPage from "./pages/GuiadoPage"; // Ajusta la ruta si está en components o pages
 import ExpertoPage from "./components/ExpertoPage";
 import RegistroPage from "./components/RegistroPage";
 import LeaderboardPage from './components/LeaderboardPage';
@@ -13,10 +13,28 @@ function App() {
   const [mode, setMode] = useState("registro");
   const [startTime, setStartTime] = useState(null);
 
-  // Hook para scroll automático al cambiar de pantalla
+  // 1. Scroll automático al cambiar de pantalla
   useAutoScroll([mode]);
 
-  // Chequeo de sesión al iniciar
+  // 2. GESTIÓN DEL BOTÓN "ATRÁS" (NUEVO)
+  useEffect(() => {
+    // Esta función se dispara cuando el usuario da "Atrás" en el navegador/celular
+    const handleBackButton = (event) => {
+      // Si está jugando o viendo el ranking, volver al menú
+      if (mode !== 'landing' && mode !== 'registro') {
+        setMode('landing');
+        setStartTime(null);
+      }
+    };
+
+    // Escuchar el evento
+    window.addEventListener('popstate', handleBackButton);
+
+    // Limpieza al desmontar
+    return () => window.removeEventListener('popstate', handleBackButton);
+  }, [mode]);
+
+  // 3. Chequeo de sesión al iniciar
   useEffect(() => {
     const savedUser = localStorage.getItem("datathon_player");
     if (savedUser) {
@@ -29,16 +47,21 @@ function App() {
     }
   }, []);
 
-  const handleRegistroExitoso = (datos) => {
+  const handleRegistroExitoso = () => {
     setMode("landing");
   };
 
   const handleBackToMenu = () => {
     setMode("landing");
     setStartTime(null);
+    // Opcional: Si quieres limpiar la URL visualmente, podrías usar history.replaceState aquí
   };
 
   const handleStartGame = (selectedMode) => {
+    // === TRUCO: EMPUJAR HISTORIAL ===
+    // Agregamos una entrada al historial para que el botón "Atrás" tenga a donde volver
+    window.history.pushState({ page: selectedMode }, "", "");
+
     if (selectedMode === 'leaderboard') {
       setMode('leaderboard');
       return;
