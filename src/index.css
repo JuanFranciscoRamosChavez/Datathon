@@ -1079,15 +1079,19 @@ body {
 #pistas-container {
   width: 100%;
   /* Espacio abajo para que el botón de NOTAS no tape la última carta */
-  padding-bottom: 120px;
+  padding-bottom: 150px;
   perspective: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .pista-card {
   opacity: 0;
   /* Animación de entrada más sutil para que no "bailen" tanto */
   animation: slideUpCard 0.6s ease-out forwards;
-  margin: 1.5rem 0; /* Margen reducido en móvil */
+  width: 100%;
+  margin:0; /* Margen reducido en móvil */
   width: 100%;
   position: relative;
 }
@@ -1111,14 +1115,35 @@ body {
 .pista-card-inner {
   position: relative;
   width: 100%;
-  min-height: 400px;
+  min-height: auto;
+  height: auto;
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-style: preserve-3d;
 }
 
 @media (min-width: 768px) {
   .pista-card-inner {
-    min-height: 450px;
+    min-height: 450px; /* Altura fija para que se vean uniformes */
+  }
+
+  .pista-card-front,
+  .pista-card-back {
+    position: absolute; /* Volvemos al absolute para el giro 3D */
+    top: 0; left: 0; right: 0; bottom: 0;
+    height: 100%;
+    display: flex; /* Siempre visibles para el giro */
+  }
+  
+  .pista-card-back {
+    transform: rotateY(180deg); /* El dorso está girado */
+  }
+
+  .pista-card.flipped .pista-card-inner {
+    transform: rotateY(180deg); /* Giramos el contenedor */
+  }
+  
+  .pista-card.flipped .pista-card-front {
+    display: flex; /* No lo ocultamos con display:none, dejamos que backface-visibility haga su trabajo */
   }
 }
 
@@ -1126,9 +1151,19 @@ body {
   transform: rotateY(180deg);
 }
 
+.pista-card.flipped .pista-card-front {
+  display: none; /* Ocultamos el frente */
+}
+
+.pista-card.flipped .pista-card-back {
+  display: flex; /* Mostramos el dorso */
+  transform: rotateY(0deg); /* En móvil, mejor hacemos un cambio simple sin giro 3D complejo si da problemas */
+  animation: fadeIn 0.5s;
+}
+
 .pista-card-front,
 .pista-card-back {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -1166,6 +1201,7 @@ body {
 }
 
 .pista-card-back {
+  display: none; /* Oculto por defecto en móvil */
   transform: rotateY(180deg);
   border-color: var(--purple); /* Borde morado para analizadas */
   box-shadow: 0 0 25px rgba(124, 58, 237, 0.3);
