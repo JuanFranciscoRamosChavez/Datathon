@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useAutoScroll } from "./hooks/useAutoScroll";
 
 import LandingPage from "./components/LandingPage";
-import GuiadoPage from "./pages/GuiadoPage"; // Ajusta la ruta si está en components o pages
+import GuiadoPage from "./components/GuiadoPage"; // Ajusta la ruta si está en components o pages
 import ExpertoPage from "./components/ExpertoPage";
 import RegistroPage from "./components/RegistroPage";
 import LeaderboardPage from './components/LeaderboardPage';
