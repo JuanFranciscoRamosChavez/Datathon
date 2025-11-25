@@ -551,10 +551,10 @@ body {
 }
 
 
-#pistas-container,
+/*#pistas-container,
 .experto-main-col {
   flex: 1;
-}
+}*/
 .cuaderno-sidebar {
   position: sticky;
   top: 2rem;
@@ -2327,6 +2327,14 @@ border-color: var(--purple);
   .sidebar-mobile-header {
     display: none !important;
   }
+  #pistas-container {
+    perspective: 1000px;
+    gap: 2rem;
+    width: 100%;
+    padding-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    }
 }
 
 /* --- VERSIÓN MÓVIL (Panel Deslizante "Sheet") --- */
@@ -2362,6 +2370,17 @@ border-color: var(--purple);
     overflow-y: auto;
     padding-bottom: 100px;
   }
+  #pistas-container {
+        perspective: 1000px;
+        gap: 2rem;
+        width: 65%;
+        padding-bottom: 150px;
+        display: flex;
+        flex-direction: column;
+    }
+    .experto-theme .results-card{
+        width: 95%;
+    }
 }
 
 /* 4. ELEMENTOS EXCLUSIVOS MÓVIL */
@@ -2652,6 +2671,8 @@ border-color: var(--purple);
 /* Botón final grande */
 .btn-iniciar-investigacion-final {
   display: flex;
+  flex-wrap: wrap;
+  justify-self: center;
   font-size: 1rem;
   margin-right: 0px;
   margin-top: 16px;
