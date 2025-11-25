@@ -5,7 +5,7 @@ import Timer from "../components/Timer";
 import PistaCard from "../components/PistaCard";
 import Cuaderno from "../components/Cuaderno";
 import { useAutoScroll } from "../hooks/useAutoScroll"; // <--- 1. IMPORTAR
-import { GOOGLE_SCRIPT_URL } from '../constants';
+import { GOOGLE_SCRIPT_URL } from "../constants";
 
 const pistasReales = [
   {
@@ -19,7 +19,8 @@ const pistasReales = [
       {
         texto: "Interrogar al Coronel Mostaza",
         esCorrecta: false,
-        feedback: "Mostaza estaba en la biblioteca. No vio el encuentro en el vestíbulo.",
+        feedback:
+          "Mostaza estaba en la biblioteca. No vio el encuentro en el vestíbulo.",
       },
       {
         texto: "Buscar huellas en la entrada",
@@ -39,12 +40,14 @@ const pistasReales = [
       {
         texto: "Revisar la caja fuerte",
         esCorrecta: false,
-        feedback: "La caja fuerte está intacta. Lo que falta es una herramienta común.",
+        feedback:
+          "La caja fuerte está intacta. Lo que falta es una herramienta común.",
       },
       {
         texto: "Ver cámaras del Salón",
         esCorrecta: false,
-        feedback: "El salón está despejado. El reporte viene del inventario general.",
+        feedback:
+          "El salón está despejado. El reporte viene del inventario general.",
       },
     ],
   },
@@ -59,12 +62,14 @@ const pistasReales = [
       {
         texto: "Buscar emails de la víctima",
         esCorrecta: false,
-        feedback: "El correo de la víctima está encriptado. Los chats internos son más accesibles.",
+        feedback:
+          "El correo de la víctima está encriptado. Los chats internos son más accesibles.",
       },
       {
         texto: "Seguir a Escarlata",
         esCorrecta: false,
-        feedback: "Escarlata está visible en la fiesta. El rastro digital es más importante.",
+        feedback:
+          "Escarlata está visible en la fiesta. El rastro digital es más importante.",
       },
     ],
   },
@@ -79,12 +84,14 @@ const pistasReales = [
       {
         texto: "Confiar en la palabra de Verdy",
         esCorrecta: false,
-        feedback: "Nunca confíes sin verificar. Los datos muestran movimiento inusual.",
+        feedback:
+          "Nunca confíes sin verificar. Los datos muestran movimiento inusual.",
       },
       {
         texto: "Revisar el Estudio",
         esCorrecta: false,
-        feedback: "El cuerpo apareció ahí, pero necesitamos saber quién tuvo tiempo de moverlo.",
+        feedback:
+          "El cuerpo apareció ahí, pero necesitamos saber quién tuvo tiempo de moverlo.",
       },
     ],
   },
@@ -99,12 +106,14 @@ const pistasReales = [
       {
         texto: "Buscar el Cuchillo de carne",
         esCorrecta: false,
-        feedback: "El cuchillo es una distracción. Lo importante es que ella mintió sobre su ubicación.",
+        feedback:
+          "El cuchillo es una distracción. Lo importante es que ella mintió sobre su ubicación.",
       },
       {
         texto: "Presionar a White",
         esCorrecta: false,
-        feedback: "White es sospechoso, pero la mentira directa viene de Escarlata.",
+        feedback:
+          "White es sospechoso, pero la mentira directa viene de Escarlata.",
       },
     ],
   },
@@ -124,7 +133,8 @@ const pistasReales = [
       {
         texto: "Interrogar al jardinero",
         esCorrecta: false,
-        feedback: "No hay jardinero de turno. Solo los invitados tienen acceso.",
+        feedback:
+          "No hay jardinero de turno. Solo los invitados tienen acceso.",
       },
     ],
   },
@@ -144,7 +154,8 @@ const pistasReales = [
       {
         texto: "Verificar botiquín",
         esCorrecta: false,
-        feedback: "El botiquín está completo. Faltan sustancias tóxicas, no medicinas.",
+        feedback:
+          "El botiquín está completo. Faltan sustancias tóxicas, no medicinas.",
       },
     ],
   },
@@ -184,7 +195,8 @@ const pistasReales = [
       {
         texto: "Llamar a mantenimiento",
         esCorrecta: false,
-        feedback: "No hay tiempo. El registro de la llamada ya nos dice quién fue.",
+        feedback:
+          "No hay tiempo. El registro de la llamada ya nos dice quién fue.",
       },
     ],
   },
@@ -199,7 +211,8 @@ const pistasReales = [
       {
         texto: "Creer en la alergia de Verdy",
         esCorrecta: false,
-        feedback: "Es una excusa clásica. Los testigos oculares dicen lo contrario.",
+        feedback:
+          "Es una excusa clásica. Los testigos oculares dicen lo contrario.",
       },
       {
         texto: "Interrogar a Pay de Zarza",
@@ -237,7 +250,7 @@ function GuiadoPage({ startTime, onBackToMenu }) {
   const [investigacionIniciada, setInvestigacionIniciada] = useState(false);
   const [sospechosoActual, setSospechosoActual] = useState(-1);
   const [resultadoFinal, setResultadoFinal] = useState(null);
-  
+
   const [showMobileNotebook, setShowMobileNotebook] = useState(false);
   const [tiempoFinal, setTiempoFinal] = useState(null);
 
@@ -247,12 +260,11 @@ function GuiadoPage({ startTime, onBackToMenu }) {
 
   const handlePistaCompletada = () => setPistasCompletadas((prev) => prev + 1);
 
-      useAutoScroll([
+  useAutoScroll([
     investigacionIniciada, // Cuando pasas de sospechosos a pistas
-    resultadoFinal,        // Cuando ganas o pierdes
-    "siempre"              // Truco: para que también lo haga al montar el componente
+    resultadoFinal, // Cuando ganas o pierdes
+    "siempre", // Truco: para que también lo haga al montar el componente
   ]);
-
 
   // ====== FORMULARIO DE ACUSACIÓN ======
   const AcusacionForm = () => {
@@ -262,7 +274,7 @@ function GuiadoPage({ startTime, onBackToMenu }) {
       lugar: "",
     });
 
- const RESPUESTA_CORRECTA = {
+    const RESPUESTA_CORRECTA = {
       sospechoso: "Señor Verdy",
       arma: "Alucinógenos",
       lugar: "Invernadero",
@@ -289,19 +301,29 @@ function GuiadoPage({ startTime, onBackToMenu }) {
         const savedUser = localStorage.getItem("datathon_player");
         let usuario = { nombres: "Anonimo", apellidoPaterno: "", correo: "" };
         if (savedUser) {
-          try { usuario = JSON.parse(savedUser); } catch (e) { console.error(e); }
+          try {
+            usuario = JSON.parse(savedUser);
+          } catch (e) {
+            console.error(e);
+          }
         }
 
         const dataToSend = new FormData();
-        dataToSend.append("nombreCompleto", `${usuario.nombres} ${usuario.apellidoPaterno}`);
+        dataToSend.append(
+          "nombreCompleto",
+          `${usuario.nombres} ${usuario.apellidoPaterno}`
+        );
         dataToSend.append("correo", usuario.correo);
         dataToSend.append("segundos", elapsedSeconds);
         dataToSend.append("tiempo", tiempoBonito);
+        dataToSend.append("modo", "Guiado");
+        dataToSend.append("resultado", "VICTORIA"); // <-- IMPORTANTE: Le decimos que ganó
 
         fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST", body: dataToSend, mode: "no-cors",
+          method: "POST",
+          body: dataToSend,
+          mode: "no-cors",
         }).catch((err) => console.error(err));
-
       } else {
         // --- LÓGICA DE FALLO ---
         const nuevosIntentos = intentosFallidos + 1;
@@ -310,27 +332,58 @@ function GuiadoPage({ startTime, onBackToMenu }) {
         if (nuevosIntentos >= MAX_INTENTOS) {
           // YA NO QUEDAN VIDAS -> GAME OVER FINAL (Morado)
           setResultadoFinal("derrota_final");
+          const savedUser = localStorage.getItem("datathon_player");
+          let usuario = { nombres: "Anonimo", apellidoPaterno: "", correo: "" };
+          if (savedUser)
+            try {
+              usuario = JSON.parse(savedUser);
+            } catch (e) {}
+
+          const dataDerrota = new FormData();
+          dataDerrota.append("correo", usuario.correo);
+          dataDerrota.append("modo", "Guiado");
+          dataDerrota.append("resultado", "DERROTA"); // <-- IMPORTANTE: Le decimos que perdió
+
+          fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            body: dataDerrota,
+            mode: "no-cors",
+          }).catch((err) => console.error("Error enviando derrota", err));
         } else {
-          // PRIMER FALLO -> ADVERTENCIA (Ámbar/Rojo)
+          // === CASO ADVERTENCIA ===
           setResultadoFinal("advertencia");
         }
       }
     };
 
     return (
-      <div className="acusacion-panel" style={{marginTop: '2rem'}}>
+      <div className="acusacion-panel" style={{ marginTop: "2rem" }}>
         {/* ... (TU FORMULARIO DE SIEMPRE - SIN CAMBIOS) ... */}
         <div className="acusacion-fields">
           <div className="field-group">
             <label>¿QUIÉN FUE?</label>
-            <select value={acusacion.sospechoso} onChange={(e) => setAcusacion({ ...acusacion, sospechoso: e.target.value })}>
+            <select
+              value={acusacion.sospechoso}
+              onChange={(e) =>
+                setAcusacion({ ...acusacion, sospechoso: e.target.value })
+              }
+            >
               <option value="">Selecciona sospechoso...</option>
-              {SOSPECHOSOS.map((s) => (<option key={s.nombre} value={s.nombre}>{s.nombre}</option>))}
+              {SOSPECHOSOS.map((s) => (
+                <option key={s.nombre} value={s.nombre}>
+                  {s.nombre}
+                </option>
+              ))}
             </select>
           </div>
           <div className="field-group">
             <label>¿CON QUÉ ARMA?</label>
-            <select value={acusacion.arma} onChange={(e) => setAcusacion({ ...acusacion, arma: e.target.value })}>
+            <select
+              value={acusacion.arma}
+              onChange={(e) =>
+                setAcusacion({ ...acusacion, arma: e.target.value })
+              }
+            >
               <option value="">Selecciona arma...</option>
               <option>Cable soga...</option>
               <option>Cuchillo para cortes de carne</option>
@@ -340,7 +393,12 @@ function GuiadoPage({ startTime, onBackToMenu }) {
           </div>
           <div className="field-group">
             <label>¿EN QUÉ LUGAR?</label>
-            <select value={acusacion.lugar} onChange={(e) => setAcusacion({ ...acusacion, lugar: e.target.value })}>
+            <select
+              value={acusacion.lugar}
+              onChange={(e) =>
+                setAcusacion({ ...acusacion, lugar: e.target.value })
+              }
+            >
               <option value="">Selecciona lugar...</option>
               <option>Vestíbulo</option>
               <option>Salón</option>
@@ -357,15 +415,25 @@ function GuiadoPage({ startTime, onBackToMenu }) {
 
         <button
           className="btn-confirmar-acusacion"
-          disabled={!acusacion.sospechoso || !acusacion.arma || !acusacion.lugar}
+          disabled={
+            !acusacion.sospechoso || !acusacion.arma || !acusacion.lugar
+          }
           onClick={handleConfirmar}
         >
           CONFIRMAR ACUSACIÓN
         </button>
-        
+
         {/* Mostrador de intentos restantes discreto */}
-        <p style={{textAlign:'center', color:'gray', fontSize:'2rem', marginTop:'1rem', fontFamily: "Verdana, Geneva, Tahoma, sans-serif"}}>
-            INTENTOS RESTANTES: {MAX_INTENTOS - intentosFallidos}
+        <p
+          style={{
+            textAlign: "center",
+            color: "gray",
+            fontSize: "2rem",
+            marginTop: "1rem",
+            fontFamily: "Verdana, Geneva, Tahoma, sans-serif",
+          }}
+        >
+          INTENTOS RESTANTES: {MAX_INTENTOS - intentosFallidos}
         </p>
       </div>
     );
@@ -381,7 +449,8 @@ function GuiadoPage({ startTime, onBackToMenu }) {
         <h2 className="resultado-subtitulo">HAS RESUELTO EL CASO</h2>
         <p className="resultado-texto">
           <br />
-          Has completado 10/10 pistas en <Timer startTime={startTime} stopTime={tiempoFinal} />
+          Has completado 10/10 pistas en{" "}
+          <Timer startTime={startTime} stopTime={tiempoFinal} />
         </p>
         <button className="btn-reiniciar" onClick={onBackToMenu}>
           VOLVER AL MENÚ
@@ -395,23 +464,28 @@ function GuiadoPage({ startTime, onBackToMenu }) {
   const PantallaAdvertencia = () => (
     <div className="resultado-screen advertencia-mode">
       <div className="advertencia-bg"></div>
-      
+
       <div className="advertencia-content">
         <h1 className="advertencia-titulo">¡ERROR DE CÁLCULO!</h1>
-        
+
         <div className="advertencia-texto">
           <p>Tus deducciones son incorrectas.</p>
           <p>El sospechoso ha notado actividad inusual en la red.</p>
         </div>
 
-        <div className="alerta-critica">
-          ⚠ ALERTA: TE QUEDA 1 SOLO INTENTO
-        </div>
-        
-        <p style={{color: '#999', marginBottom: '2rem',fontSize:'1.5rem', fontFamily: "Verdana, Geneva, Tahoma, sans-serif"}}>
+        <div className="alerta-critica">⚠ ALERTA: TE QUEDA 1 SOLO INTENTO</div>
+
+        <p
+          style={{
+            color: "#999",
+            marginBottom: "2rem",
+            fontSize: "1.5rem",
+            fontFamily: "Verdana, Geneva, Tahoma, sans-serif",
+          }}
+        >
           Si fallas de nuevo, serás eliminado del sistema permanentemente.
         </p>
-        
+
         <button
           className="btn-advertencia"
           onClick={() => setResultadoFinal(null)}
@@ -463,11 +537,17 @@ function GuiadoPage({ startTime, onBackToMenu }) {
       {pistasCompletadas === pistasReales.length && !resultadoFinal && (
         <div className="final-dramatico-screen">
           <div className="final-dramatico-bg"></div>
-          <div className="final-dramatico-content" style={{width: '100%', maxWidth:'600px', overflowY:'auto', maxHeight:'90vh'}}>
+          <div
+            className="final-dramatico-content"
+            style={{
+              width: "100%",
+              maxWidth: "600px",
+              overflowY: "auto",
+              maxHeight: "90vh",
+            }}
+          >
             <h1 className="final-title glitch-red">CASO RESUELTO</h1>
-            <p className="final-subtitle">
-              Es hora de señalar al culpable.
-            </p>
+            <p className="final-subtitle">Es hora de señalar al culpable.</p>
             <AcusacionForm />
           </div>
         </div>
@@ -487,7 +567,7 @@ function GuiadoPage({ startTime, onBackToMenu }) {
           )}
 
           {investigacionIniciada && (
-            <button 
+            <button
               className="btn-toggle-cuaderno"
               onClick={() => setShowMobileNotebook(true)}
             >
@@ -496,21 +576,31 @@ function GuiadoPage({ startTime, onBackToMenu }) {
           )}
 
           {investigacionIniciada && (
-            <div 
-              className={`mobile-backdrop ${showMobileNotebook ? 'visible' : ''}`}
+            <div
+              className={`mobile-backdrop ${
+                showMobileNotebook ? "visible" : ""
+              }`}
               onClick={() => setShowMobileNotebook(false)}
             ></div>
           )}
 
           <div className="guiado-layout">
-            <div className={`cuaderno-sidebar ${showMobileNotebook ? 'open' : ''}`}>
+            <div
+              className={`cuaderno-sidebar ${showMobileNotebook ? "open" : ""}`}
+            >
               <div className="sidebar-mobile-header">
-                  <span className="sidebar-mobile-title">📒 NOTAS DEL CASO</span>
-                  <button className="btn-minimizar" onClick={() => setShowMobileNotebook(false)}>
-                    <span>▼</span> CERRAR
-                  </button>
-               </div>
-              <Cuaderno sospechosos={SOSPECHOSOS} mostrarBoton={investigacionIniciada} />
+                <span className="sidebar-mobile-title">📒 NOTAS DEL CASO</span>
+                <button
+                  className="btn-minimizar"
+                  onClick={() => setShowMobileNotebook(false)}
+                >
+                  <span>▼</span> CERRAR
+                </button>
+              </div>
+              <Cuaderno
+                sospechosos={SOSPECHOSOS}
+                mostrarBoton={investigacionIniciada}
+              />
             </div>
 
             <div id="pistas-container">
@@ -518,47 +608,74 @@ function GuiadoPage({ startTime, onBackToMenu }) {
                 <div className="briefing-suspects">
                   <h1>ARCHIVOS DESCLASIFICADOS</h1>
                   <p>Accede a los expedientes uno por uno...</p>
-                  
+
                   {/* ... (LISTA DE SOSPECHOSOS IGUAL QUE ANTES) ... */}
                   <div className="suspects-list-container">
                     {SOSPECHOSOS.map((s, index) => {
-                        /* ... Tu lógica de botones de expediente ... */
-                        let btnClass = "btn-expediente";
-                        let label = "";
-                        if (index <= sospechosoActual) { btnClass += " unlocked"; label = "ACCESS GRANTED: "; } 
-                        else if (index === sospechosoActual + 1) { btnClass += " next"; label = "LOCKED: "; } 
-                        else { btnClass += " locked"; label = "LOCKED: "; }
+                      /* ... Tu lógica de botones de expediente ... */
+                      let btnClass = "btn-expediente";
+                      let label = "";
+                      if (index <= sospechosoActual) {
+                        btnClass += " unlocked";
+                        label = "ACCESS GRANTED: ";
+                      } else if (index === sospechosoActual + 1) {
+                        btnClass += " next";
+                        label = "LOCKED: ";
+                      } else {
+                        btnClass += " locked";
+                        label = "LOCKED: ";
+                      }
 
-                        return (
+                      return (
                         <div key={s.nombre}>
-                            <button
+                          <button
                             className={btnClass}
-                            onClick={() => index === sospechosoActual + 1 && setSospechosoActual((prev) => prev + 1)}
+                            onClick={() =>
+                              index === sospechosoActual + 1 &&
+                              setSospechosoActual((prev) => prev + 1)
+                            }
                             disabled={index > sospechosoActual + 1}
-                            >
+                          >
                             {label} {s.nombre}
-                            </button>
-                            {index <= sospechosoActual && (
+                          </button>
+                          {index <= sospechosoActual && (
                             <div className="suspect-detail-card">
-                                <strong><span className="animate-blink" style={{ color: "var(--amber)" }}>SCAN</span></strong>
-                                <p>{s.bio}</p>
+                              <strong>
+                                <span
+                                  className="animate-blink"
+                                  style={{ color: "var(--amber)" }}
+                                >
+                                  SCAN
+                                </span>
+                              </strong>
+                              <p>{s.bio}</p>
                             </div>
-                            )}
+                          )}
                         </div>
-                        );
+                      );
                     })}
                   </div>
 
                   {sospechosoActual === SOSPECHOSOS.length - 1 && (
-                    <button className="btn-iniciar-investigacion-final" onClick={() => setInvestigacionIniciada(true)}>
+                    <button
+                      className="btn-iniciar-investigacion-final"
+                      onClick={() => setInvestigacionIniciada(true)}
+                    >
                       INICIAR INVESTIGACIÓN
                     </button>
                   )}
                 </div>
               ) : (
-                pistasReales.slice(0, pistasCompletadas + 1).map((pista, i) => (
-                    <PistaCard key={i} pista={pista} index={i} onCompletar={handlePistaCompletada} />
-                ))
+                pistasReales
+                  .slice(0, pistasCompletadas + 1)
+                  .map((pista, i) => (
+                    <PistaCard
+                      key={i}
+                      pista={pista}
+                      index={i}
+                      onCompletar={handlePistaCompletada}
+                    />
+                  ))
               )}
             </div>
           </div>
