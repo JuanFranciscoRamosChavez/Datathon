@@ -215,7 +215,7 @@ function RegistroPage({ onRegistroCompletado }) {
               </option>
 
               <option value="Sociología">Sociología</option>
-              <option value="Visitantes">Otros</option>
+              <option value="Visitantes">Visitantes</option>
             </select>
           </div>
 
