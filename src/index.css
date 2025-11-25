@@ -1121,6 +1121,31 @@ body {
   transform-style: preserve-3d;
 }
 
+@media (min-width: 768px) {
+  .pista-card-inner {
+    min-height: 450px; /* Altura fija para que se vean uniformes */
+  }
+
+  .pista-card-front,
+  .pista-card-back {
+    position: absolute; /* Volvemos al absolute para el giro 3D */
+    top: 0; left: 0; right: 0; bottom: 0;
+    height: 100%;
+    display: flex; /* Siempre visibles para el giro */
+  }
+  
+  .pista-card-back {
+    transform: rotateY(180deg); /* El dorso está girado */
+  }
+
+  .pista-card.flipped .pista-card-inner {
+    transform: rotateY(180deg); /* Giramos el contenedor */
+  }
+  
+  .pista-card.flipped .pista-card-front {
+    display: flex; /* No lo ocultamos con display:none, dejamos que backface-visibility haga su trabajo */
+  }
+}
 
 .pista-card.flipped .pista-card-inner {
   transform: rotateY(180deg);
