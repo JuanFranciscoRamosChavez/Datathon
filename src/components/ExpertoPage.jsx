@@ -532,7 +532,7 @@ function ExpertoPage({ startTime, onAcusar }) {
                     }
                   >
                     <h4>🔧 inventario_herramientas</h4>
-                    <p>Estado de objetos</p>
+                    <p>log_inventario_id , timestamp_reporte , herramienta_id , ubicacion_id , estado  , reportado_por_id</p>
                   </div>
                   <div
                     className="db-table-item"
@@ -541,7 +541,7 @@ function ExpertoPage({ startTime, onAcusar }) {
                     }
                   >
                     <h4>💬 chat_interno</h4>
-                    <p>Mensajes y logs</p>
+                    <p>mensaje_id , ts , remitente_id , destinatario_id , mensaje , estado_msg</p>
                   </div>
                   <div
                     className="db-table-item"
@@ -550,7 +550,7 @@ function ExpertoPage({ startTime, onAcusar }) {
                     }
                   >
                     <h4>📞 registro_llamadas</h4>
-                    <p>Llamadas telefónicas</p>
+                    <p>llamada_id , ts , persona_id_origen , numero_marcado , duracion_segundos</p>
                   </div>
                   <div
                     className="db-table-item"
@@ -562,21 +562,21 @@ function ExpertoPage({ startTime, onAcusar }) {
                     }
                   >
                     <h4>📄 declaraciones</h4>
-                    <p>Testimonios</p>
+                    <p>declaracion_id , sospechoso_id , ts</p>
                   </div>
                   <div
                     className="db-table-item"
                     onClick={() => loadTableTemplate("personas", "persona_id")}
                   >
                     <h4>👥 personas</h4>
-                    <p>Lista de involucrados</p>
+                    <p>persona_id , nombre_completo , rol</p>
                   </div>
                   <div
                     className="db-table-item"
                     onClick={() => loadTableTemplate("salas", "sala_id")}
                   >
                     <h4>📍 salas</h4>
-                    <p>Mapa de la mansión</p>
+                    <p>sala_id , nombre_sala</p>
                   </div>
                   <div
                     className="db-table-item"
@@ -585,7 +585,7 @@ function ExpertoPage({ startTime, onAcusar }) {
                     }
                   >
                     <h4>🔪 armas_herramientas</h4>
-                    <p>Catálogo de objetos</p>
+                    <p>herramienta_id , nombre_objeto , descripcion</p>
                   </div>
                 </div>
               )}
@@ -607,16 +607,19 @@ function ExpertoPage({ startTime, onAcusar }) {
               <button onClick={() => setQuery("")} className="btn-clear">
                 CLR
               </button>
-              <button onClick={() => insertTable("SELECT * FROM")}>
+              <button onClick={() => insertTable("SELECT")}>
                 SELECT *
+              </button>
+              <button onClick={() => insertTable("FROM")}>
+                FROM
               </button>
               <button onClick={() => insertTable("WHERE")}>WHERE</button>
               <button onClick={() => insertTable("AND")}>AND</button>
               <button onClick={() => insertTable("LIKE")}>LIKE</button>
-              <button onClick={() => insertTable("'Verdy'")}>'Verdy'</button>
-              <button onClick={() => insertTable("'Invernadero'")}>
-                'Invernadero'
+              <button onClick={() => insertTable("ORDER BY")}>
+                ORDER BY
               </button>
+              <button onClick={() => insertTable("LIMIT")}>LIMIT</button>
             </div>
             <button
               className="btn-run-cyber"
