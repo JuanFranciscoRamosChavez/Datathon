@@ -1121,33 +1121,6 @@ body {
   transform-style: preserve-3d;
 }
 
-@media (min-width: 768px) {
-  .pista-card-inner {
-    min-height: 450px; 
-  }
-
-  .pista-card-front,
-  .pista-card-back {
-    position: absolute; 
-    top: 0; left: 0; right: 0; bottom: 0;
-    height: 100%;
-    display: flex; /* Siempre visibles para el giro */
-  }
-  
-  .pista-card-back {
-    display: flex; /* En PC siempre es flex, pero oculto por el giro */
-    transform: rotateY(180deg);
-  }
-
-  .pista-card.flipped .pista-card-inner {
-    transform: rotateY(180deg); /* Aquí sí giramos */
-  }
-  
-  /* En PC NO ocultamos el frente con display:none, dejamos que el 3D lo oculte */
-  .pista-card.flipped .pista-card-front {
-    display: flex !important; 
-  }
-}
 
 .pista-card.flipped .pista-card-inner {
   transform: rotateY(180deg);
