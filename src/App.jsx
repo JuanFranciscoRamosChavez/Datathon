@@ -1,24 +1,22 @@
 // src/App.jsx
 
 import React, { useState, useEffect } from "react";
-import { useAutoScroll } from "./hooks/useAutoScroll"; // <--- 1. IMPORTAR EL HOOK
+import { useAutoScroll } from "./hooks/useAutoScroll";
 
 import LandingPage from "./components/LandingPage";
-import GuiadoPage from "./components/GuiadoPage";
+import GuiadoPage from "./components/GuiadoPage"; // O "./pages/GuiadoPage" según tu carpeta
 import ExpertoPage from "./components/ExpertoPage";
-import ModalAcusacion from "./components/ModalAcusacion";
 import RegistroPage from "./components/RegistroPage";
 import LeaderboardPage from './components/LeaderboardPage';
 
 function App() {
   const [mode, setMode] = useState("registro");
   const [startTime, setStartTime] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 2. USAR EL HOOK DE SCROLL AUTOMÁTICO
-  // Esto detecta cuando cambia el 'mode' (la pantalla) y sube el scroll a 0
+  // Hook para scroll automático al cambiar de pantalla
   useAutoScroll([mode]);
 
+  // Chequeo de sesión al iniciar
   useEffect(() => {
     const savedUser = localStorage.getItem("datathon_player");
     if (savedUser) {
@@ -40,25 +38,7 @@ function App() {
     setStartTime(null);
   };
 
-  // Nota: Esta función es para el Modo Experto (si aún usa el modal antiguo)
-  const handleSubmitAcusacion = (data) => {
-    console.log("Acusación recibida:", data);
-    // Aquí podrías actualizar la lógica si ExpertoPage también cambia de culpable
-    const esCorrecta =
-      data.culpable === "Señor Verdy" && 
-      data.herramienta === "Alucinógenos" &&
-      data.lugar === "Invernadero";
-      
-    alert(
-      esCorrecta
-        ? "¡CORRECTO! Has resuelto el caso."
-        : "Incorrecto. Sigue investigando."
-    );
-    setIsModalOpen(false);
-  };
-
   const handleStartGame = (selectedMode) => {
-    // Si seleccionan leaderboard, no iniciamos el tiempo
     if (selectedMode === 'leaderboard') {
       setMode('leaderboard');
       return;
@@ -67,8 +47,9 @@ function App() {
     setStartTime(Date.now());
   };
 
-  // Renderizado condicional
+  // Renderizado condicional de páginas
   let content;
+  
   if (mode === "registro") {
     content = <RegistroPage onRegistroCompletado={handleRegistroExitoso} />;
   } else if (mode === "landing") {
@@ -86,14 +67,13 @@ function App() {
       <GuiadoPage
         startTime={startTime}
         onBackToMenu={handleBackToMenu}
-        // Ya no pasamos onAcusar porque GuiadoPage maneja su propio formulario final ahora
       />
     );
   } else if (mode === "experto") {
     content = (
       <ExpertoPage
         startTime={startTime}
-        onAcusar={() => setIsModalOpen(true)} // Experto sigue usando el modal global por ahora
+        onBackToMenu={handleBackToMenu}
       />
     );
   } else if (mode === "leaderboard") {
@@ -110,14 +90,6 @@ function App() {
   return (
     <div className="App">
       {content}
-
-      {/* Este modal solo se usa ahora para el Modo Experto */}
-      {isModalOpen && (
-        <ModalAcusacion
-          onSubmit={handleSubmitAcusacion}
-          onClose={() => setIsModalOpen(false)}
-        />
-      )}
     </div>
   );
 }
