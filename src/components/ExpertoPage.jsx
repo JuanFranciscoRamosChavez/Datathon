@@ -172,19 +172,25 @@ function ExpertoPage({ startTime, onAcusar }) {
 
         if (nuevosIntentos >= MAX_INTENTOS) {
           setResultadoFinal("derrota_final");
-        
-        // ENVIAR DERROTA
+
+          // ENVIAR DERROTA
           const savedUser = localStorage.getItem("datathon_player");
           let usuario = { nombres: "Hacker", apellidoPaterno: "", correo: "" };
-          if (savedUser) try { usuario = JSON.parse(savedUser); } catch (e) {}
+          if (savedUser)
+            try {
+              usuario = JSON.parse(savedUser);
+            } catch (e) {}
 
           const dataDerrota = new FormData();
           dataDerrota.append("correo", usuario.correo);
           dataDerrota.append("modo", "Experto");
           dataDerrota.append("resultado", "DERROTA"); // <-- DERROTA
 
-          fetch(GOOGLE_SCRIPT_URL, { method: "POST", body: dataDerrota, mode: "no-cors" });
-
+          fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            body: dataDerrota,
+            mode: "no-cors",
+          });
         } else {
           setResultadoFinal("advertencia");
         }
@@ -514,7 +520,7 @@ function ExpertoPage({ startTime, onAcusar }) {
                     }
                   >
                     <h4>🛡️ registro_seguridad</h4>
-                    <p>Historial de accesos</p>
+                    <p>registro_id , ts , persona_id , sala_id , tipo_acceso</p>
                   </div>
                   <div
                     className="db-table-item"
