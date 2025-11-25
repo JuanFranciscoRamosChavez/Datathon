@@ -1069,7 +1069,6 @@ body {
   margin-top: 1rem;
 }
 
-/* PISTAS CONTAINER (OPCIÓN 1) */
 #pistas-container {
   width: 100%;
   padding-bottom: 150px;
@@ -1106,84 +1105,58 @@ body {
 .pista-card-inner {
   position: relative;
   width: 100%;
-  min-height: auto;
   height: auto;
   transition: transform 0.8s;
-  transform-style: preserve-3d;
+  transform-style: flat;
 }
 
+.pista-card.flipped .pista-card-front {
+  display: none !important; /* Desaparece el frente por completo */
+}
+
+.pista-card.flipped .pista-card-back {
+  display: flex !important; /* Aparece el dorso */
+  animation: fadeIn 0.5s ease-in;
+}
+
+.pista-card.flipped .pista-card-inner {
+  transform: none !important; /* Sin rotación en móvil */
+}
+
+
+/* --- CONFIGURACIÓN DE ESCRITORIO (PC - CON 3D) --- */
 @media (min-width: 768px) {
+  
   .pista-card-inner {
-    min-height: 450px;
+    min-height: 450px; /* Altura fija necesaria para el giro 3D */
+    transform-style: preserve-3d; /* Activamos 3D solo en PC */
   }
 
-  .pista-card-front, .pista-card-back {
-    position: absolute; /* Absolute solo en PC */
+  .pista-card-front, 
+  .pista-card-back {
+    position: absolute; /* Absolute para que estén una sobre otra */
     top: 0; left: 0; right: 0; bottom: 0;
     height: 100%;
-    display: flex;
+    backface-visibility: hidden; /* Ocultar la cara trasera al girar */
   }
 
   .pista-card-back {
-    display: flex; /* Siempre visible pero girada */
+    display: flex; /* En PC siempre es flex, pero está girada 180deg */
     transform: rotateY(180deg);
   }
 
+  /* ANIMACIÓN DE GIRO EN PC */
   .pista-card.flipped .pista-card-inner {
     transform: rotateY(180deg) !important;
   }
   
+  /* CORRECCIÓN DE "INTERACCIÓN FANTASMA" */
   .pista-card.flipped .pista-card-front {
-    display: flex !important;
+    display: flex !important; /* Mantenemos display flex para la animación */
+    pointer-events: none; /* <--- ESTO ES LA MAGIA: Desactiva los clicks en la cara oculta */
+    opacity: 0; /* Lo hacemos invisible visualmente tras el giro */
+    transition: opacity 0.3s 0.3s; /* Desvanecer a la mitad del giro */
   }
-}
-
-.pista-card.flipped .pista-card-inner {
-  transform: rotateY(180deg);
-}
-
-.pista-card.flipped .pista-card-front {
-  display: none; /* Ocultamos el frente */
-}
-
-.pista-card.flipped .pista-card-back {
-display: flex !important;
-  opacity: 1 !important;
-  animation: fadeIn 0.5s ease-in;
-}
-
-.pista-card-front,
-.pista-card-back {
-  position: relative;
-  width: 100%;
-  height: auto;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  gap: 1rem;
-  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-  border: 2px solid var(--amber); /* Borde más fino en móvil */
-  border-radius: 1.2rem;
-
-  /* Padding optimizado para móvil */
-  padding: 1rem;
-
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.2),
-    inset 0 0 30px rgba(245, 158, 11, 0.05);
-}
-
-@media (min-width: 768px) {
-  .pista-card-front,
-  .pista-card-back {
-    padding: 2.5rem; /* Más aire en PC */
-    border-width: 3px;
-  }
-}
-
-.pista-card-front {
-  justify-content: flex-start;
 }
 
 .pista-card-back {
