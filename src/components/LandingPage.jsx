@@ -42,7 +42,7 @@ function LandingPage({ onStartGame, onLogout }) {
             La <strong>Señorita Pay de Zarza</strong>, estudiante destacada y multifacética, fue asesinada durante la graduación generacional en una casa de estilo barroco, específicamente en el salón de baile principal, donde estaban varios de sus amigos. 
           </p>
           <p className="timer-big">
-            Tienes <span id="timer-landing">15:00</span> minutos antes de que llegue la
+            Tienes <span id="timer-landing">60:00</span> minutos antes de que llegue la
             policía.
           </p>
         </div>
