@@ -73,7 +73,7 @@ function RegistroPage({ onRegistroCompletado }) {
               type="email"
               name="correo"
               required
-              placeholder="alumno@comunidad.unam.mx"
+              placeholder="alumno@pcpuma.acatlan.unam.mx"
               value={formData.correo}
               onChange={handleChange}
               disabled={isSubmitting}
