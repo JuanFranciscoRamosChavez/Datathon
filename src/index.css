@@ -1083,7 +1083,7 @@ body {
   perspective: 1000px;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .pista-card {
@@ -1123,27 +1123,29 @@ body {
 
 @media (min-width: 768px) {
   .pista-card-inner {
-    min-height: 450px; /* Altura fija para que se vean uniformes */
+    min-height: 450px; 
   }
 
   .pista-card-front,
   .pista-card-back {
-    position: absolute; /* Volvemos al absolute para el giro 3D */
+    position: absolute; 
     top: 0; left: 0; right: 0; bottom: 0;
     height: 100%;
     display: flex; /* Siempre visibles para el giro */
   }
   
   .pista-card-back {
-    transform: rotateY(180deg); /* El dorso está girado */
+    display: flex; /* En PC siempre es flex, pero oculto por el giro */
+    transform: rotateY(180deg);
   }
 
   .pista-card.flipped .pista-card-inner {
-    transform: rotateY(180deg); /* Giramos el contenedor */
+    transform: rotateY(180deg); /* Aquí sí giramos */
   }
   
+  /* En PC NO ocultamos el frente con display:none, dejamos que el 3D lo oculte */
   .pista-card.flipped .pista-card-front {
-    display: flex; /* No lo ocultamos con display:none, dejamos que backface-visibility haga su trabajo */
+    display: flex !important; 
   }
 }
 
@@ -1156,25 +1158,22 @@ body {
 }
 
 .pista-card.flipped .pista-card-back {
-  display: flex; /* Mostramos el dorso */
-  transform: rotateY(0deg); /* En móvil, mejor hacemos un cambio simple sin giro 3D complejo si da problemas */
-  animation: fadeIn 0.5s;
+display: flex !important; /* Forzamos mostrar el dorso */
+  position: relative !important;
+  opacity: 1 !important;
+  transform: none !important;
+  animation: fadeIn 0.5s ease-in; /* Animación suave de aparición */
 }
 
 .pista-card-front,
 .pista-card-back {
   position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   gap: 1rem;
   background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
@@ -1201,13 +1200,8 @@ body {
 }
 
 .pista-card-back {
-  display: none; /* Oculto por defecto en móvil */
-  transform: rotateY(180deg);
-  border-color: var(--purple); /* Borde morado para analizadas */
-  box-shadow: 0 0 25px rgba(124, 58, 237, 0.3);
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+display: none;
+border-color: var(--purple);
 }
 
 .pista-title {
