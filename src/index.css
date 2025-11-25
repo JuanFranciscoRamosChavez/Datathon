@@ -1086,6 +1086,26 @@ body {
   position: relative;
 }
 
+.pista-card-front,
+.pista-card-back {
+  position: relative; /* En móvil ocupan espacio físico */
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  border: 2px solid var(--amber);
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  
+  /* Esto oculta la cara trasera en el modo 3D */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 @keyframes slideUpCard {
   from {
     opacity: 0;
@@ -1134,15 +1154,17 @@ body {
 
   .pista-card-front, 
   .pista-card-back {
-    position: absolute; /* Absolute para que estén una sobre otra */
+    position: absolute !important; /* Absolute para que estén una sobre otra */
     top: 0; left: 0; right: 0; bottom: 0;
     height: 100%;
+    width: 100%;
     backface-visibility: hidden; /* Ocultar la cara trasera al girar */
   }
 
   .pista-card-back {
     display: flex; /* En PC siempre es flex, pero está girada 180deg */
     transform: rotateY(180deg);
+    opacity: 1;
   }
 
   /* ANIMACIÓN DE GIRO EN PC */
@@ -1154,8 +1176,6 @@ body {
   .pista-card.flipped .pista-card-front {
     display: flex !important; /* Mantenemos display flex para la animación */
     pointer-events: none; /* <--- ESTO ES LA MAGIA: Desactiva los clicks en la cara oculta */
-    opacity: 0; /* Lo hacemos invisible visualmente tras el giro */
-    transition: opacity 0.3s 0.3s; /* Desvanecer a la mitad del giro */
   }
 }
 
