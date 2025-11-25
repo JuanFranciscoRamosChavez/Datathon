@@ -156,6 +156,7 @@ function RegistroPage({ onRegistroCompletado }) {
               disabled={isSubmitting}
               className="font-geneva"
             >
+              <option value="">Selecciona...</option>
               <option value="Actuaría">Actuaría</option>
 
               <option value="Arquitectura">Arquitectura</option>
