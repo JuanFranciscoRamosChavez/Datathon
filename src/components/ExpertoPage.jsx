@@ -588,7 +588,7 @@ function ExpertoPage({ startTime, onAcusar }) {
         </div>
 
         {/* === CONTENIDO PRINCIPAL === */}
-        <div id="pistas-container">
+        <div id="consola-container">
           <div className="sql-card">
             <textarea
               className="sql-textarea"

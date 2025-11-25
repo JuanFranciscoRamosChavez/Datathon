@@ -2327,7 +2327,7 @@ border-color: var(--purple);
   .sidebar-mobile-header {
     display: none !important;
   }
-  #pistas-container {
+  #consola-container {
     perspective: 1000px;
     gap: 2rem;
     width: 100%;
@@ -2370,7 +2370,7 @@ border-color: var(--purple);
     overflow-y: auto;
     padding-bottom: 100px;
   }
-  #pistas-container {
+  #consola-container {
         perspective: 1000px;
         gap: 2rem;
         width: 65%;
