@@ -607,7 +607,7 @@ function ExpertoPage({ startTime, onAcusar }) {
               <button onClick={() => setQuery("")} className="btn-clear">
                 CLR
               </button>
-              <button onClick={() => insertTable("SELECT")}>
+              <button onClick={() => insertTable("SELECT *")}>
                 SELECT *
               </button>
               <button onClick={() => insertTable("FROM")}>
