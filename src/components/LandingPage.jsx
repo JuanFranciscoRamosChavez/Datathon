@@ -39,11 +39,14 @@ function LandingPage({ onStartGame, onLogout }) {
 
         <div className="story-box">
           <p>
-            La <strong>Señorita Pay de Zarza</strong>, estudiante destacada y multifacética, fue asesinada durante la graduación generacional en una casa de estilo barroco, específicamente en el salón de baile principal, donde estaban varios de sus amigos. 
+            La <strong>Señorita Pay de Zarza</strong>, estudiante destacada y
+            multifacética, fue asesinada durante la graduación generacional en
+            una casa de estilo barroco, específicamente en el salón de baile
+            principal, donde estaban varios de sus amigos.
           </p>
           <p className="timer-big">
-            Tienes <span id="timer-landing">60:00</span> minutos antes de que llegue la
-            policía.
+            Tienes <span id="timer-landing">60:00</span> minutos antes de que
+            llegue la policía.
           </p>
         </div>
 
@@ -75,7 +78,77 @@ function LandingPage({ onStartGame, onLogout }) {
             <small>Los mejores detectives</small>
           </div>
         </div>
+        {/* === FOOTER DE CRÉDITOS (EL CONTENEDOR) === */}
+        <div
+          className="landing-footer"
+          onClick={() => setShowCredits(!showCredits)} // <--- AQUÍ ESTÁ EL CAMBIO
+          style={{
+            borderColor: showCredits
+              ? "var(--amber)"
+              : "rgba(245, 158, 11, 0.3)", // Feedback visual
+          }}
+        >
+          <div className="footer-content">
+            <span className="footer-icon">{showCredits ? "✖" : "ℹ️"}</span>{" "}
+            {/* Cambia el ícono si está abierto */}
+            <div className="footer-text">
+              <span className="footer-title">
+                SISTEMA DESARROLLADO POR EQUIPO DATATHON
+              </span>
+              <span className="footer-subtitle">
+                {showCredits
+                  ? "Click para cerrar credenciales"
+                  : "Click para ver credenciales de acceso"}
+              </span>
+            </div>
+            <span className="footer-version">v1.0.5</span>
+          </div>
+        </div>
       </div>
+
+      {/* === MODAL DE CRÉDITOS === */}
+      {showCredits && (
+        <div
+          className="modal-credits-backdrop"
+          onClick={() => setShowCredits(false)}
+        >
+          <div
+            className="modal-credits-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="credits-title">CRÉDITOS</h2>
+
+            <div className="credits-grid">
+              {/* --- AQUÍ PON TUS NOMBRES --- */}
+              <div className="dev-card">
+                <h3>Juárez Clemente Karla Valeria</h3>
+                <p>Desarrolladora Full Stack</p>
+              </div>
+              <div className="dev-card">
+                <h3>Ramos Chavez Juan Francisco</h3>
+                <p>Desarrollador Full Stack</p>
+              </div>
+            </div>
+
+            <div className="credits-tech">
+              <p>TECNOLOGÍAS:</p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "1rem",
+                  color: "var(--amber)",
+                  fontWeight: "bold",
+                }}
+              >
+                <span>REACT</span> • <span>SUPABASE</span> • <span>VITE</span>
+              </div>
+            </div>
+
+            <p className="credits-footer-text">Datathon 2025 © FES Acatlán</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

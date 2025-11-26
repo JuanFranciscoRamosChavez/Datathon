@@ -3619,3 +3619,125 @@ border-color: var(--purple);
 .results-card div::-webkit-scrollbar {
   display: none !important;
 }
+
+/* ================================================= */
+/* === FOOTER DE CRÉDITOS (ESTILO CONTENEDOR) === */
+/* ================================================= */
+
+.landing-footer {
+  margin-top: 4rem;
+  width: 100%;
+  max-width: 800px;
+  
+  /* Estilo "Contenedor Tech" */
+  background: linear-gradient(90deg, 
+      rgba(245, 158, 11, 0.05) 0%, 
+      rgba(245, 158, 11, 0.15) 50%, 
+      rgba(245, 158, 11, 0.05) 100%);
+  
+  border: 1px solid var(--amber);
+  border-radius: 12px;
+  padding: 1.5rem;
+  
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  /* Sombra para que flote un poco */
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Efecto Hover: Se ilumina al pasar el mouse */
+.landing-footer:hover {
+  background: rgba(245, 158, 11, 0.2);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+  transform: translateY(-5px);
+  border-color: #fcd34d;
+}
+
+/* Decoración de "Scan" (Línea que pasa) */
+.landing-footer::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: skewX(-20deg);
+  transition: 0.5s;
+}
+
+.landing-footer:hover::after {
+  left: 150%;
+  transition: 1s;
+}
+
+/* Contenido Interno */
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer-icon {
+  font-size: 2rem;
+  filter: grayscale(100%);
+  transition: 0.3s;
+}
+.landing-footer:hover .footer-icon {
+  filter: grayscale(0%) drop-shadow(0 0 10px var(--amber));
+}
+
+.footer-text {
+  text-align: left;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-title {
+  font-family: "Orbitron", monospace;
+  color: var(--amber);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.footer-subtitle {
+  font-family: Verdana, sans-serif;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+.footer-version {
+  font-family: "Courier New", monospace;
+  color: #555;
+  font-weight: bold;
+  border: 1px solid #333;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Ajuste Móvil */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-text {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.modal-credits-backdrop {
+  align-items: flex-start; /* Alineado arriba en lugar de centro */
+  padding-top: auto; /* Espacio superior */
+  margin: 20px;
+}
+
+/* Si quieres que el botón footer brille cuando está activo */
+.landing-footer:active {
+  transform: scale(0.98);
+}
