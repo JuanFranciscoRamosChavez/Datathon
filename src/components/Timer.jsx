@@ -15,8 +15,8 @@ function Timer({ startTime, stopTime }) {
       // Calculamos segundos transcurridos
       const elapsed = Math.floor((currentTime - startTime) / 1000);
       
-      // Calculamos restante (60 min * 60 seg = 3600 seg)
-      const remaining = Math.max(3600 - elapsed, 0);
+      // Calculamos restante (30 min * 60 seg = 1800 seg)
+      const remaining = Math.max(1800 - elapsed, 0);
 
       // Formateamos a MM:SS
       const mins = String(Math.floor(remaining / 60)).padStart(2, '0');

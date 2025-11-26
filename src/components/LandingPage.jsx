@@ -38,14 +38,10 @@ function LandingPage({ onStartGame, onLogout }) {
 
         <div className="story-box">
           <p>
-            La <strong>Señorita Pay de Zarza</strong>, estudiante destacada y
-            multifacética, fue asesinada durante la graduación generacional en
-            una casa de estilo barroco, específicamente en el salón de baile
-            principal, donde estaban varios de sus amigos.
+            Muerte en la graduación.<strong>Pay de Zarza</strong>, estudiante excepcional, fue asesinada en el salón de baile principal de una residencia barroca. Sus amigos estaban allí. Uno de ellos es el culpable.
           </p>
           <p className="timer-big">
-            Tienes <span id="timer-landing">60:00</span> minutos antes de que
-            llegue la policía.
+            Quedan <span id="timer-landing">30:00</span> minutos para resolver el caso antes de que la policía tome control.
           </p>
         </div>
 

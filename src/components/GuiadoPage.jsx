@@ -11,7 +11,7 @@ const pistasReales = [
   {
     titulo: "Pista 1: Movimientos Sospechosos",
     briefing:
-      "El asesinato ocurrió en una ventana de tiempo específica. Revisa el 'registro_seguridad' del Vestíbulo. ¿Quiénes estaban ahí?",
+      "Sabemos que el asesinato ocurrió en un intervalo de tiempo muy preciso. Consulta el 'registro_seguridad' del Vestíbulo para identificar a todas las personas que pasaron por ahí.¿Quiénes podrían ser sospechosos?",
     conclusion:
       "Registro: La Señorita Escarlata y el Señor White estuvieron simultáneamente en el Vestíbulo durante 15 minutos. Poco después, ella salió con prisa.",
     opciones: [
@@ -32,7 +32,7 @@ const pistasReales = [
   {
     titulo: "Pista 2: La Herramienta Perdida",
     briefing:
-      "El Dr. Black reportó un robo en el 'inventario_herramientas'. ¿Qué objeto falta y de dónde?",
+      "El Dr. Black reportó el robo de un objeto en el 'inventario_herramientas'. ¿Qué artículo falta y de qué área fue sustraído?",
     conclusion:
       "Inventario: Un 'Cable soga' desapareció del Vestíbulo esa misma tarde. Coincide con la ubicación de los sospechosos de la Pista 1.",
     opciones: [
@@ -54,7 +54,7 @@ const pistasReales = [
   {
     titulo: "Pista 3: El Mensaje Cifrado",
     briefing:
-      "Interceptamos el 'chat_interno'. Hay rumores de un reto entre White y Black. Busca mensajes extraños.",
+      "El 'chat_interno' ha sido interceptado. Informes preliminares sugieren un reto privado entre White y Black. Analiza los textos e identifica cualquier comunicación sospechosa.",
     conclusion:
       "Chat Log: White escribió a Black: '¿Algún día los probará? Tú que eres tan listo ¿cómo lo harías?'. Parece un desafío intelectual... o una amenaza.",
     opciones: [
@@ -76,7 +76,7 @@ const pistasReales = [
   {
     titulo: "Pista 4: La Coartada de Verdy",
     briefing:
-      "El Señor Verdy dice que estuvo en el Salón toda la noche. Crucemos eso con los logs de seguridad.",
+      "Según Verdy, pasó toda la noche en el Salón sin moverse. Contrasta su testimonio con los logs de seguridad para confirmar si dice la verdad.",
     conclusion:
       "Alerta: Verdy entró y salió del Salón dos veces. Su segunda salida coincide exactamente con el momento en que el cuerpo fue movido al Estudio.",
     opciones: [
@@ -98,7 +98,7 @@ const pistasReales = [
   {
     titulo: "Pista 5: La Mentira de Escarlata",
     briefing:
-      "Declaración de Escarlata: 'Nunca entré a la Cocina'. ¿Es verdad? Revisa el 'registro_seguridad'.",
+      "Según su testimonio, Escarlata nunca accedió a la Cocina. Analiza el 'registro_seguridad' y verifica si estuvo realmente allí.",
     conclusion:
       "Contradicción: Los datos muestran que Escarlata entró a la Cocina 5 minutos antes del hallazgo del cuerpo. Ella mintió, pero ¿es la asesina?",
     opciones: [
@@ -120,7 +120,7 @@ const pistasReales = [
   {
     titulo: "Pista 6: El Registro Fantasma",
     briefing:
-      "Algo huele mal en el Invernadero... literalmente olor químico. Revisa quién entró y no salió.",
+      "Algo no cuadra en el Invernadero… un olor químico y persistente flota en el aire, como si alguien —o algo— hubiera estado aquí sin ser visto. Revisa los registros: ¿Quién entró y nunca salió? ¿Qué secreto esconde este lugar?",
     conclusion:
       "Dato Crítico: Verdy entró al Invernadero a las 23:25. NO hay registro de salida. Sigue ahí o salió sin huella digital.",
     opciones: [
@@ -141,7 +141,7 @@ const pistasReales = [
   {
     titulo: "Pista 7: Veneno en el Inventario",
     briefing:
-      "Revisa el estado de los químicos peligrosos en 'inventario_herramientas'. Busca cambios recientes.",
+      "Revisa inmediatamente el estado de los químicos peligrosos en la base de datos 'inventario_herramientas'. Enfócate en identificar cambios recientes.",
     conclusion:
       "Evidencia: Los 'Alucinógenos' están marcados como 'parcialmente usados'. La etiqueta de reporte fue hecha por... ¡Verdy!",
     opciones: [
@@ -162,7 +162,7 @@ const pistasReales = [
   {
     titulo: "Pista 8: El Borrador Oculto",
     briefing:
-      "El administrador recuperó metadatos de mensajes NO enviados (Drafts). ¿Qué escribía Verdy?",
+      "El administrador logró recuperar metadatos de mensajes que nunca fueron enviados, guardados en la carpeta de Borradores. ¿En qué estaba trabajando Verdy antes de que ocurriera lo impensable?",
     conclusion:
       "Mensaje Recuperado: 'Ella nunca debió reírse de mí… no lo entendería ni con una sobredosis'. Verdy confesó su intención en un borrador.",
     opciones: [
@@ -182,7 +182,7 @@ const pistasReales = [
   {
     titulo: "Pista 9: Automatización Hackeada",
     briefing:
-      "Hubo un apagón en el Invernadero. Revisa 'registro_llamadas' buscando códigos de sistema (*#).",
+      "El apagón en el Invernadero fue demasiado oportuno para ser una coincidencia. Alguien pudo haber usado códigos especiales (*#) para manipular los sistemas. Los registros de llamadas guardan la verdad.",
     conclusion:
       "Sabotaje: Verdy llamó al '*#09' (Sistema de Ventilación) por 7 segundos. Activó la dispersión de gas manualmente.",
     opciones: [
@@ -203,7 +203,7 @@ const pistasReales = [
   {
     titulo: "Pista 10: La Contradicción Final",
     briefing:
-      "Cruza la declaración de Verdy ('Soy alérgico al polen, no entré') con la del Coronel Mostaza.",
+      "La declaración de Verdy (Soy alérgico al polen no estaba en el invernadero) contradice la versión del Coronel Mostaza. Es hora de cruzar ambos testimonios y descubrir la verdad.",
     conclusion:
       "JAQUE MATE: Mostaza declaró: 'Vi a Verdy saliendo del invernadero tosiendo'. Verdy mintió sobre su alergia y su ubicación.",
     opciones: [
@@ -226,23 +226,23 @@ const pistasReales = [
 const SOSPECHOSOS = [
   {
     nombre: "Señorita Escarlata",
-    bio: "Su mejor amiga, su amistad empezó después de que la Señorita Escarlata arruinará parte de su tesis, sin que ella lo supiera, y posterior fingiera amabilidad con ella.",
+    bio: "Su mejor amiga. Su amistad empezó después de que la Señorita Escarlata arruinara parte de su tesis sin que ella lo supiera, y posteriormente, fingiera amabilidad con ella.",
   },
   {
     nombre: "Coronel Mostaza",
-    bio: "Arquitecto y mentor de la señorita Pay de Zarza quienes estuvieron animando la fiesta desde su llegada, sobre todo por el llamativo vestuario de Mostaza, lleno de lirios.",
+    bio: "Arquitecto y mentor de la señorita Pay de Zarza, quienes animaron la fiesta desde su llegada, especialmente por el llamativo vestuario de Mostaza, adornado con lirios.",
   },
   {
     nombre: "Señor White",
-    bio: "Walter White, amigo cercano de Pay de Zarza, le suministraba “sustancias” a aquel que lo solicitaba, hacía tratos con allegados de Pay de Zarza sin llegar a comerciar con la víctima, por lo que tenía varios contactos.",
+    bio: "Walter White, amigo cercano de Pay de Zarza, suministraba “sustancias” a quien se las solicitara y realizaba tratos con allegados de ella, aunque nunca llegó a comerciar directamente con la víctima. Por ello, contaba con varios contactos.",
   },
   {
     nombre: "Señor Verdy",
-    bio: "Se ha mantenido cerca de los círculos de la señorita Pay de Zarza, siempre al pendiente y tratando de estar cerca de ella, un admirado que incluso, ha robado su información personal, buscando que su presencia sea notoria para ella ha tomado decisiones desesperadas. ",
+    bio: "El señor Verdy se ha mantenido cerca de los círculos de la señorita Pay de Zarza, siempre pendiente de ella y tratando de acercarse. Es un admirador que incluso ha robado su información personal; buscando hacerse notar, ha tomado decisiones desesperadas.",
   },
   {
     nombre: "Dr. Black",
-    bio: "El doctor Jacobo “Jack” Black ha asistido a 3 graduaciones con anterioridad. Su alto desempeño escolar lo ha llevado a titularse dos veces y obtener un doctorado. Quizá por su inteligencia ideó un plan para entrar en el círculo social de Pay de Zarza para sabotearla y que nadie más supere su promedio.",
+    bio: "El doctor Jacobo “Jack” Black ha asistido a tres graduaciones con anterioridad. Su alto desempeño académico le permitió titularse dos veces y obtener un doctorado. Quizá debido a su inteligencia ideó un plan para infiltrarse en el círculo social de Pay de Zarza, con el fin de sabotearla y evitar que alguien superara su promedio.",
   },
 ];
 function GuiadoPage({ startTime, onBackToMenu }) {

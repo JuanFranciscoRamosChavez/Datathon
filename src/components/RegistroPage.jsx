@@ -243,8 +243,7 @@ function RegistroPage({ onRegistroCompletado }) {
               />
               <span className="font-geneva text-xs tracking-wide text-gray-400">
                 Acepto que mis datos serán utilizados{" "}
-                <strong>únicamente</strong> para el registro del juego y fines
-                estadísticos del Datathon.
+                <strong>únicamente</strong> para el registro del juego, para fines estadísticos del Datathon y para propósitos educativos relacionados con esta actividad.
               </span>
             </label>
           </div>
