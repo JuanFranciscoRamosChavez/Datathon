@@ -114,7 +114,7 @@ function LandingPage({ onStartGame, onLogout }) {
             <div className="credits-tech">
                 <p>TECNOLOGÍAS:</p>
                 <div style={{display:'flex', justifyContent:'center', gap:'1rem', color:'var(--amber)', fontWeight:'bold'}}>
-                    <span>REACT</span> • <span>SUPABASE</span> • <span>VITE</span>
+                    <span>REACT</span> • <span>SUPABASE</span> • <span>VITE</span> • <span>GOOGLE SHEETS</span> • <span>TAILWIND CSS</span>
                 </div>
             </div>
             
