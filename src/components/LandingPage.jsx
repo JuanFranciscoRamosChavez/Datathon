@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 
 function LandingPage({ onStartGame, onLogout }) {
   const [playerName, setPlayerName] = useState("");
+  
+  const [showCredits, setShowCredits] = useState(false);
 
   useEffect(() => {
     const savedData = localStorage.getItem("datathon_player");
@@ -19,136 +21,108 @@ function LandingPage({ onStartGame, onLogout }) {
 
   return (
     <div id="landing" className="page active">
-      {/* Encabezado con Info de Usuario y Logout */}
+      {/* Encabezado */}
       <div className="landing-header">
         <div className="user-info">
-          DETECTIVE:{" "}
-          <span style={{ color: "var(--amber)" }}>
-            {playerName || "INVITADO"}
-          </span>
+          DETECTIVE: <span style={{ color: "var(--amber)" }}>{playerName || "INVITADO"}</span>
         </div>
         <button className="btn-logout" onClick={onLogout}>
           CERRAR SESIÓN [X]
         </button>
       </div>
 
-      {/* Contenedor Principal Centrado */}
+      {/* Contenedor Principal */}
       <div className="landing-content">
         <h1 className="glitch">DATATHON: MURDER MYSTERY</h1>
         <p className="lema">"Los datos no mienten, pero los sospechosos sí."</p>
 
         <div className="story-box">
           <p>
-            La <strong>Señorita Pay de Zarza</strong>, estudiante destacada y
-            multifacética, fue asesinada durante la graduación generacional en
-            una casa de estilo barroco, específicamente en el salón de baile
-            principal, donde estaban varios de sus amigos.
-          </p>
-          <p className="timer-big">
-            Tienes <span id="timer-landing">60:00</span> minutos antes de que
-            llegue la policía.
+            La <strong>Señorita Pay de Zarza</strong>, estudiante destacada, fue asesinada.
+            Tienes <span id="timer-landing">60:00</span> minutos para resolverlo.
           </p>
         </div>
 
         <div className="modes">
-          <div
-            className="mode-card guiado"
-            onClick={() => onStartGame("guiado")}
-          >
-            <div className="mode-icon">🕵️‍♂️</div>{" "}
+          <div className="mode-card guiado" onClick={() => onStartGame("guiado")}>
+            <div className="mode-icon">🕵️‍♂️</div>
             <div className="mode-title">MODO GUIADO</div>
             <small>Te guío paso a paso con pistas reales</small>
           </div>
 
-          <div
-            className="mode-card experto"
-            onClick={() => onStartGame("experto")}
-          >
-            <div className="mode-icon">👨‍💻</div>{" "}
+          <div className="mode-card experto" onClick={() => onStartGame("experto")}>
+            <div className="mode-icon">👨‍💻</div>
             <div className="mode-title">MODO EXPERTO</div>
             <small>SQL puro. Sin ayuda. Solo datos.</small>
           </div>
 
-          <div
-            className="mode-card leaderboard-card"
-            onClick={() => onStartGame("leaderboard")}
-          >
+          <div className="mode-card leaderboard-card" onClick={() => onStartGame("leaderboard")}>
             <div className="mode-icon">🏆</div>
             <div className="mode-title">TOP 10</div>
             <small>Los mejores detectives</small>
           </div>
         </div>
-        {/* === FOOTER DE CRÉDITOS (EL CONTENEDOR) === */}
-        <div
-          className="landing-footer"
-          onClick={() => setShowCredits(!showCredits)} // <--- AQUÍ ESTÁ EL CAMBIO
-          style={{
-            borderColor: showCredits
-              ? "var(--amber)"
-              : "rgba(245, 158, 11, 0.3)", // Feedback visual
-          }}
+
+        {/* === FOOTER DE CRÉDITOS (ARREGLADO) === */}
+        <div 
+            className="landing-footer" 
+            // 1. CAMBIO: Ahora alterna entre true/false
+            onClick={() => setShowCredits(!showCredits)} 
+            style={{
+                // 2. CAMBIO: Si está abierto, lo subimos por encima del fondo negro (z-index alto)
+                zIndex: showCredits ? 100000 : 10, 
+                position: 'relative', 
+                borderColor: showCredits ? 'var(--amber)' : 'rgba(245, 158, 11, 0.3)'
+            }}
         >
-          <div className="footer-content">
-            <span className="footer-icon">{showCredits ? "✖" : "ℹ️"}</span>{" "}
-            {/* Cambia el ícono si está abierto */}
-            <div className="footer-text">
-              <span className="footer-title">
-                SISTEMA DESARROLLADO POR EQUIPO DATATHON
-              </span>
-              <span className="footer-subtitle">
-                {showCredits
-                  ? "Click para cerrar credenciales"
-                  : "Click para ver credenciales de acceso"}
-              </span>
-            </div>
-            <span className="footer-version">v1.0.5</span>
-          </div>
+           <div className="footer-content">
+              {/* Cambia el ícono visualmente */}
+              <span className="footer-icon">{showCredits ? "✖" : "ℹ️"}</span>
+              <div className="footer-text">
+                  <span className="footer-title">SISTEMA DESARROLLADO POR EQUIPO DATATHON</span>
+                  <span className="footer-subtitle">
+                      {showCredits ? "Click para cerrar credenciales" : "Click para ver credenciales de acceso"}
+                  </span>
+              </div>
+              <span className="footer-version">v1.0.5</span>
+           </div>
         </div>
+
       </div>
 
       {/* === MODAL DE CRÉDITOS === */}
       {showCredits && (
-        <div
-          className="modal-credits-backdrop"
-          onClick={() => setShowCredits(false)}
-        >
-          <div
-            className="modal-credits-content"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="modal-credits-backdrop" onClick={() => setShowCredits(false)} style={{zIndex: 99999}}>
+          <div className="modal-credits-content" onClick={(e) => e.stopPropagation()}>
+            
             <h2 className="credits-title">CRÉDITOS</h2>
-
+            
             <div className="credits-grid">
-              {/* --- AQUÍ PON TUS NOMBRES --- */}
-              <div className="dev-card">
-                <h3>Juárez Clemente Karla Valeria</h3>
-                <p>Desarrolladora Full Stack</p>
-              </div>
-              <div className="dev-card">
-                <h3>Ramos Chavez Juan Francisco</h3>
-                <p>Desarrollador Full Stack</p>
-              </div>
+                {/* TU EQUIPO */}
+                <div className="dev-card">
+                    <h3>Juárez Clemente Karla Valeria</h3>
+                    <p>Desarrolladora Full Stack</p>
+                </div>
+                <div className="dev-card">
+                    <h3>Ramos Chavez Juan Francisco</h3>
+                    <p>Desarrollador Full Stack</p>
+                </div>
             </div>
 
             <div className="credits-tech">
-              <p>TECNOLOGÍAS:</p>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  gap: "1rem",
-                  color: "var(--amber)",
-                  fontWeight: "bold",
-                }}
-              >
-                <span>REACT</span> • <span>SUPABASE</span> • <span>VITE</span>
-              </div>
+                <p>TECNOLOGÍAS:</p>
+                <div style={{display:'flex', justifyContent:'center', gap:'1rem', color:'var(--amber)', fontWeight:'bold'}}>
+                    <span>REACT</span> • <span>SUPABASE</span> • <span>VITE</span>
+                </div>
             </div>
-
-            <p className="credits-footer-text">Datathon 2025 © FES Acatlán</p>
+            
+            <p className="credits-footer-text">
+                Datathon 2025 © FES Acatlán
+            </p>
           </div>
         </div>
       )}
+
     </div>
   );
 }
