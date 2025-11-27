@@ -1,5 +1,3 @@
-// src/components/Timer.jsx
-
 import React, { useState, useEffect } from 'react';
 
 // Recibe 'startTime' (inicio del juego) y 'stopTime' (fin del juego, opcional)

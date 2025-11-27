@@ -1,5 +1,3 @@
-// src/components/PistaCard.jsx
-
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom'; // <--- 1. IMPORTAR PORTAL
 

@@ -1,5 +1,3 @@
-// src/components/LeaderboardPage.jsx
-
 import React, { useEffect, useState } from 'react';
 import { GOOGLE_SCRIPT_URL } from '../constants';
 
@@ -30,7 +28,6 @@ function LeaderboardPage({ onBack }) {
   };
 
   // Filtrado
-// FILTRADO A PRUEBA DE ERRORES
   const filteredLeaders = leaders
     .filter(l => (l.modo || "Guiado") === currentTab)
     .sort((a, b) => a.segundos - b.segundos);

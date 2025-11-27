@@ -1,4 +1,3 @@
-// src/components/RegistroPage.jsx
 import React, { useState } from "react";
 import { GOOGLE_SCRIPT_URL } from '../constants';
 

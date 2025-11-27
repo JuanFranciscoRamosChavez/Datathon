@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Timer from "../components/Timer";
 import PistaCard from "../components/PistaCard";
 import Cuaderno from "../components/Cuaderno";
-import { useAutoScroll } from "../hooks/useAutoScroll"; // <--- 1. IMPORTAR
+import { useAutoScroll } from "../hooks/useAutoScroll"; 
 import { GOOGLE_SCRIPT_URL } from "../constants";
 
 const pistasReales = [
