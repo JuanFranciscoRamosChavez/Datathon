@@ -31,7 +31,14 @@ function LeaderboardPage({ onBack }) {
 
   // Filtrado
   const filteredLeaders = leaders
-    .filter(l => (l.modo || "Guiado") === currentTab)
+.filter(l => {
+      // Normalizamos: Quitamos espacios y hacemos minúsculas para comparar
+      // Si el campo 'modo' viene vacío, asumimos que es un registro antiguo del modo "Guiado"
+      const modoRegistro = (l.modo || "Guiado").toString().trim().toLowerCase();
+      const modoPestana = currentTab.toString().trim().toLowerCase();
+      
+      return modoRegistro === modoPestana;
+    })
     .sort((a, b) => a.segundos - b.segundos);
 
   return (
