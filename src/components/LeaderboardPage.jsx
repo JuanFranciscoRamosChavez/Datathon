@@ -30,16 +30,20 @@ function LeaderboardPage({ onBack }) {
   };
 
   // Filtrado
+// FILTRADO A PRUEBA DE ERRORES
   const filteredLeaders = leaders
-.filter(l => {
-      // Normalizamos: Quitamos espacios y hacemos minúsculas para comparar
-      // Si el campo 'modo' viene vacío, asumimos que es un registro antiguo del modo "Guiado"
-      const modoRegistro = (l.modo || "Guiado").toString().trim().toLowerCase();
-      const modoPestana = currentTab.toString().trim().toLowerCase();
+    .filter(l => {
+      // 1. Obtenemos el dato (si viene vacío, asumimos que es un registro viejo 'Guiado')
+      const modoRegistro = l.modo ? String(l.modo) : "Guiado";
       
-      return modoRegistro === modoPestana;
+      // 2. Limpiamos: Quitamos espacios extra y convertimos a minúsculas
+      const modoLimpio = modoRegistro.trim().toLowerCase();
+      const tabLimpia = currentTab.trim().toLowerCase();
+
+      // 3. Comparamos
+      return modoLimpio === tabLimpia;
     })
-    .sort((a, b) => a.segundos - b.segundos);
+    .sort((a, b) => a.segundos - b.segundos)
 
   return (
     <div className="leaderboard-screen">
